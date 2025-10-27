@@ -41,9 +41,8 @@ nav ul{
     padding: 10px;
     border-radius: 10px;
     transition: 0.4s;
-}
-.nav-links a{
     color: #444;
+    font-weight: 500;
 }
 .nav-links a:hover,  a.active{
     background: #097ef4;
@@ -320,7 +319,9 @@ select{
     }
     nav ul a{
         font-size: 10px;
-        color: black;
+        color: #444;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
         padding: 5px;
     }
     .content-section{
