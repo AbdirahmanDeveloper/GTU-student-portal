@@ -1,21 +1,25 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import mysql from 'mysql2/promise';
 
+
+
+dotenv.config();
+
 const app = express();
-const PORT = 3000;
-
-
 app.use(cors());
 app.use(bodyParser.json());
 
+const PORT = 3000;
+
 
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'studentportaldb'
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASS || '',
+    database: process.env.DB_NAME || 'studentportaldb'
 });
 
 (async () => {
@@ -24,8 +28,16 @@ const db = mysql.createPool({
         console.log('connected succesfully');
         connection.release();
     }
-    catch (err) {
+    catch (error) {
         console.log('connection failed:', error);
     }
 })();
+
+app.get('/' , (req,res) => {
+    res.send('Hello World');
+});
+
+app.listen(PORT, () => {
+    console.log(`server is running on port ${PORT}`);
+});
 

@@ -64,48 +64,6 @@ function btnTxtChange(){
 btnTxtChange();
 hideNavBtn();
 
-// ********** Check login **********
-const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-if (!loggedInUser) {
-  // If no user logged in, redirect to login
-  window.location.href = "login.html";
-} else {
-  // Fetch and display student info
-  fetchStudentInfo(loggedInUser.reg_number);
-}
-
-// ********** Fetch student info **********
-async function fetchStudentInfo(reg_number) {
-  try {
-    const response = await fetch(`http://localhost:5000/student/${reg_number}`);
-    const data = await response.json();
-
-    if (data.success) {
-      const s = data.student;
-
-      document.getElementById("address").value = s.address || "";
-      document.getElementById("post_code").value = s.post_code || "";
-      document.getElementById("city").value = s.city || "";
-      document.getElementById("country").value = s.country || "";
-      document.getElementById("home_county").value = s.home_county || "";
-      document.getElementById("sub_county").value = s.sub_county || "";
-      document.getElementById("main_mobile").value = s.main_mobile || "";
-      document.getElementById("alt_mobile").value = s.alt_mobile || "";
-      document.getElementById("online_mobile").value = s.online_mobile || "";
-      document.getElementById("alt_online_mobile").value = s.alt_online_mobile || "";
-      document.getElementById("main_email").value = s.main_email || "";
-      document.getElementById("alt_email").value = s.alt_email || "";
-      document.getElementById("online_email").value = s.online_email || "";
-      document.getElementById("alt_online_email").value = s.alt_online_email || "";
-    } else {
-      alert(data.message);
-    }
-  } catch (err) {
-    console.error("Error fetching student info:", err);
-  }
-}
-
 // ********** Logout **********
 const signoutBtn = document.getElementById("signout");
 signoutBtn.addEventListener("click", () => {

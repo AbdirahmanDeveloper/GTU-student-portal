@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login.css">
-    <title>GTU student portal</title>
+    <title>GTU Student Portal</title>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-form">
-            <h2>🎓 GTU Student Portal</h2>
-            <form action="#" method="post">
-                <p class="error-msg" id="errorMsg"></p>
-                <label for="username" >Student ID:</label>
-                <input type="text" placeholder="username" id="username">
-
-
-                <label for="password">Enter Password:</label>
-                <input type="password" placeholder="password" id="password">
-                <button type="submit">Login</button>
-            </form>
-        </div>
-    </div>
-    <script src="login.js"></script>
+        <form class="login-form" id="loginForm">
+          <h2>Student Portal Login</h2>
+          <div>
+            <label for="username">🎓 Registration Number</label>
+            <input type="text" id="username" name="username" placeholder="Enter Reg No">
+          </div>
+          <div>
+            <label for="password">Phone Number</label>
+            <input type="password" id="password" name="password" placeholder="Enter Phone Number">
+          </div>
+          <p id="errorMsg" class="error-msg"></p>
+          <button type="submit">Login</button>
+        </form>
+      </div>
 </body>
 </html>
