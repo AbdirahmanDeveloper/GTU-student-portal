@@ -57,9 +57,11 @@ nav ul{
     left: 0;
     display: none;
     height: 90%;
+    flex-direction: column;
+    align-items: center;
 }
 .content-section.active{
-    display: block;
+    display: flex;
 }
 
 /* sections */
@@ -88,8 +90,12 @@ th, td{
     padding: 10px;
     width: 200px;
 }
+th{
+    font-size: x-large;
+}
 td{
-    font-weight: 200;
+    font-weight: bold;
+    font-size: large;
 }
 .personal-details input{
     border: none;
@@ -331,6 +337,8 @@ select{
         height: 100%;
         z-index: 99;
         top: 0;
+        align-items: center;
+        flex-direction: column;
     }
     .chatbot-section{
         top: 0;
@@ -419,5 +427,13 @@ select{
 @media(max-width:700px){
     .side-bar{
         width: 35%;
+    }
+     table{
+        width:80%;
+    }
+    .personal{
+        display: flex;
+        flex-direction: column;
+        align-items:center;
     }
 }

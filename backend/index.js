@@ -1,43 +1,42 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import db from './config/db.js';
 import bodyParser from 'body-parser';
-import mysql from 'mysql2/promise';
-
-
+import authRoutes from './routes/authRoutes.js';
+import feeRoutes from './routes/feeRoutes.js';
 
 dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.json());
 
-const PORT = 3000;
-
-
-const db = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || '',
-    database: process.env.DB_NAME || 'studentportaldb'
-});
-
+// Test DB connection
 (async () => {
-    try {
-        const connection = await db.getConnection();
-        console.log('connected succesfully');
-        connection.release();
-    }
-    catch (error) {
-        console.log('connection failed:', error);
-    }
+  try {
+    const connection = await db.getConnection();
+    console.log('✅ Database connected successfully.');
+    connection.release();
+  } catch (error) {
+    console.error('❌ Database connection failed:', error.message);
+  }
 })();
 
-app.get('/' , (req,res) => {
-    res.send('Hello World');
+// Default route
+app.get('/', (req, res) => {
+  res.send('🎓 Student Portal Backend is running');
 });
 
+app.use('/api/auth', authRoutes);
+app.use('/api/fees', feeRoutes);
+
+
+// Start server
 app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
+  console.log(`🚀 Server is running on port ${PORT}`);
 });
-
