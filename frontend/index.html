@@ -117,8 +117,15 @@
                         <th>Credits</th>
                         <th>Balance</th>
                     </thead>
-                    <tbody>
-                        
+                    <tbody id="feesTableBody">
+                        <tr>
+                            <td>26-OCT-2025</td>
+                            <td>Tuition Fee</td>
+                            <td>66660</td>
+                            <td>10000</td>
+                            <td>56660</td>
+                            
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -131,8 +138,9 @@
             </div>
             <div class="timetable">
                 <h2>Teaching timetable</h2>
-                <table>
+                <table id="timetable">
                     <thead>
+                        <th></th>
                         <th>Unit Code</th>
                         <th>Unit Name</th>
                         <th>From</th>
@@ -140,6 +148,16 @@
                         <th>Venue</th>
                         <th>Lecturer</th>
                     </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td>BIT1501</td>
+                            <td>Computer Architecture</td>
+                            <td>07:00</td>
+                            <td>08:00</td>
+                            <td>Main Hall</td>
+                            <td>John</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </section>
@@ -149,6 +167,27 @@
                 <p id="regNumber"></p>
                 <p id="studentCourse"></p>
             </div>
+            <div class="results">
+                <h2>Results</h2>
+                <table>
+                    <thead>
+                        <th>Unit Code</th>
+                        <th>Unit Name</th>
+                        <th>Academic Hours</th>
+                        <th>Marks</th>
+                        <th>Mean Grade %</th>
+                    </thead>
+                    <tbody id="resultsTableBody">
+                        <tr>
+                            <td>BIT1102</td>
+                            <td>Database Systems</td>
+                            <td>42</td>
+                            <td>89</td>
+                            <td>A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
         <section class="content-section" id="course">
             <div class="student-details">
@@ -156,159 +195,72 @@
                 <p id="regNumber"></p>
                 <p id="studentCourse"></p>
             </div>
-            <div class="course-reg">
-                <h2>Register Courses</h2>
-                <table>
+            <div class="registered-courses">
+                <h2>Registred Courses</h2>
+                <table id="registredCourses">
                     <thead>
                         <th>Unit Code</th>
+                        <th>Unit Name</th>
+                        <th>Exam Type</th>
                         <th>Group</th>
-                        <th>Exam type</th>
+                        <th>Lecturer Name</th>
                     </thead>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">Class 1</option>
-                                <option value="">Class 2</option>
-                                <option value="">Class 3</option>
-                                <option value="">Class 4</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">First Attempt 1</option>
-                                <option value="">Second Attempt 2</option>
-                                <option value="">Retake</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">Class 1</option>
-                                <option value="">Class 2</option>
-                                <option value="">Class 3</option>
-                                <option value="">Class 4</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">First Attempt 1</option>
-                                <option value="">Second Attempt 2</option>
-                                <option value="">Retake</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">Class 1</option>
-                                <option value="">Class 2</option>
-                                <option value="">Class 3</option>
-                                <option value="">Class 4</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">First Attempt 1</option>
-                                <option value="">Second Attempt 2</option>
-                                <option value="">Retake</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">Class 1</option>
-                                <option value="">Class 2</option>
-                                <option value="">Class 3</option>
-                                <option value="">Class 4</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">First Attempt 1</option>
-                                <option value="">Second Attempt 2</option>
-                                <option value="">Retake</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">Class 1</option>
-                                <option value="">Class 2</option>
-                                <option value="">Class 3</option>
-                                <option value="">Class 4</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">First Attempt 1</option>
-                                <option value="">Second Attempt 2</option>
-                                <option value="">Retake</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">Class 1</option>
-                                <option value="">Class 2</option>
-                                <option value="">Class 3</option>
-                                <option value="">Class 4</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">First Attempt 1</option>
-                                <option value="">Second Attempt 2</option>
-                                <option value="">Retake</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">Class 1</option>
-                                <option value="">Class 2</option>
-                                <option value="">Class 3</option>
-                                <option value="">Class 4</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">First Attempt 1</option>
-                                <option value="">Second Attempt 2</option>
-                                <option value="">Retake</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><input type="text"></td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">Class 1</option>
-                                <option value="">Class 2</option>
-                                <option value="">Class 3</option>
-                                <option value="">Class 4</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="" id="">
-                                <option value="">First Attempt 1</option>
-                                <option value="">Second Attempt 2</option>
-                                <option value="">Retake</option>
-                            </select>
-                        </td>
-                    </tr>
+                    <tbody id="courseTableBody">
+                        
+                    </tbody>
                 </table>
+            </div>
+            <div class="register-course">
+                <h2>Register Courses</h2>
+                <form id="courseForm">
+                    <table style="width: 300px;">
+                        <thead>
+                            <th>Unit Code</th>
+                            <th>Group</th>
+                            <th>Exam type</th>
+                        </thead>
+                        <tr>
+                            <td><input class="unit-code" type="text"></td>
+                            <td>
+                                <select name="" class="group">
+                                    <option value="">Class 1</option>
+                                    <option value="">Class 2</option>
+                                    <option value="">Class 3</option>
+                                    <option value="">Class 4</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="" class="examType">
+                                    <option value="">First Attempt 1</option>
+                                    <option value="">Second Attempt 2</option>
+                                    <option value="">Retake</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input class="unit-code" type="text"></td>
+                            <td>
+                                <select name="" class="group">
+                                    <option value="">Class 1</option>
+                                    <option value="">Class 2</option>
+                                    <option value="">Class 3</option>
+                                    <option value="">Class 4</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select name="" class="examType">
+                                    <option value="">First Attempt 1</option>
+                                    <option value="">Second Attempt 2</option>
+                                    <option value="">Retake</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <button id="registerBtn">Register</button>
+                </form>
+                
+                
             </div>
         </section>
         <section class="content-section" id="requests">
@@ -333,6 +285,7 @@
                                 </select>
                             </td>
                         </tr>
+                        
                     </table>
                     <textarea name="request-area" id="request-area"></textarea>
                 </form>
