@@ -82,19 +82,15 @@ nav ul{
     gap: 20px;
 }
 table{
-    border: 2px solid #2b2b2b;
+    border: 1px solid #2b2b2b;
     border-collapse: collapse;
+    width: 900px;
 }
 th, td{
-    border: 2px solid;
+    border: 1px solid black;
     padding: 10px;
-    width: 200px;
-}
-th{
-    font-size: x-large;
-}
-td{
-    font-weight: bold;
+    width: fit-content;
+
     font-size: large;
 }
 .personal-details input{
@@ -239,25 +235,41 @@ h2{
     align-items: center;
 }
 
-.timetable table th{
+table th{
     background: #097ef4;
     color: white;
     font-weight: bolder;
 }
 
 /* course registration section styles */
-.course-reg{
+
+.register-course{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top:100px;
 }
-.course-reg input{
+.register-course input{
     border-radius: 20px;
     border: 1px solid #444;
     outline: none;
     padding: 5px;
 }
-
+#registerBtn{
+    padding: 10px;
+    width: 100px;
+    border: none;
+    background: #097ef4;
+    color: white;
+    font-weight: bolder;
+    border-radius: 0 0 10px 10px;
+}
+#courseForm{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+   
+}
 /* request section styles */
 .request-form{
     display: flex;
@@ -381,6 +393,11 @@ select{
     }
     table{
         background: white;
+        width: 700px;
+    }
+    th,td{
+        font-size: medium;
+        width: fit-content;
     }
     .student-details p{
         font-size: 11px;
@@ -428,8 +445,16 @@ select{
     .side-bar{
         width: 35%;
     }
-     table{
-        width:80%;
+     td, th{
+        width:fit-content;
+        font-size: 10px;
+        font-weight: medium;
+    }
+    table{
+        width: 450px;
+    }
+    td{
+        padding: 5px;
     }
     .personal{
         display: flex;
