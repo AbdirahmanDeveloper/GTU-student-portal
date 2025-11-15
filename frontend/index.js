@@ -21,80 +21,18 @@ function showPage(pageId, event){
 }
 
 // ********** Chatbot logic **********
-const chatbotSection = document.querySelector('.chatbot-section');
-const closeBtn = document.querySelector('.close-btn');
-const openBtn = document.querySelector('.open-btn');
-const userInput = document.getElementById("user-input");
-const chatBox = document.getElementById("chat-box");
-const sendBtn = document.getElementById("send-btn");
+const chatbotSection = document.getElementById("chatbot-section");
+const openBtn = document.getElementById("open-btn");
+const closeBtn = document.getElementById("close-btn");
 
-function addMessage(message, classNme){
-  const msgDiv = document.createElement("div");
-  msgDiv.classList.add("message", classNme);
-  msgDiv.textContent = message;
-  chatBox.appendChild(msgDiv);
-  chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function showTyping(){
-  const typingDiv = document.createElement("div");
-  typingDiv.classList.add("message", "bot-message");
-  typingDiv.textContent = "Typing ..."
-  chatBox.appendChild(typingDiv);
-  chatBox.scrollTop = chatBox.scrollHeight;
-  return typingDiv;
-}
-
-async function getBotReplay(userMessage) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
-
-    try {
-          const response = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              contents: [{ parts: [{ text: userMessage }] }]
-            })
-          });
-          
-          const data = await response.json();
-
-          return (
-            data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry Couldn't get that message."
-          )
-  } catch(error){
-
-  }
-}
-
-sendBtn.onclick = async () => {
-  const message = userInput.value.trim();
-  if(!message) return;
-  addMessage(message, "user-message");
-  userInput.value = "";
-
-  const typingDiv = showTyping();
-
-  const botReplay = await getBotReplay(message);
-  typingDiv.remove();
-  addMessage(botReplay, "bot-message");
-
-  localStorage.setItem("chatHistory", chatBox.innerHTML);
-  
-}
-
-userInput.addEventListener("keypress", (e)=>{
-  if(e.key === "Enter") sendBtn.click();
-})
-
-openBtn.addEventListener('click', () => {
+openBtn.addEventListener("click", () =>{
   chatbotSection.classList.add("active");
+  openBtn.style.display = "none";
 });
-
-closeBtn.addEventListener("click", () => {
+closeBtn.addEventListener("click", () =>{
   chatbotSection.classList.remove("active");
+  openBtn.style.display = "block";
 });
-
 // ********** Sidebar logic **********
 const closeNavBtn = document.querySelector(".close-nav");
 const openNavBtn = document.querySelector(".open-nav");
@@ -441,3 +379,4 @@ document.getElementById("requestForm").addEventListener("submit", async (e) => {
     alert(" Something went wrong. Check your connection or server.");
   }
 });
+

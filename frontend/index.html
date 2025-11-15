@@ -32,14 +32,14 @@
                 <li><a href="#" onclick="showPage('results', event)">RESULTS</a></li>
                 <li><a href="#" onclick="showPage('course', event)">COURSE REGISTRATION</a></li>
                 <li><a href="#" onclick="showPage('requests', event)">REQUESTS</a></li>
-                <li><a href="#" class="open-btn">ASSISTANT</a></li>   
                 <li><a id="signout" href="#">SIGN OUT</a></li>
             </ul>
         </nav>
     </header>
-    <div class="chatbot-section">
-        <div class="close-btn">
-            <button>Close X</button>
+    <button class="open-btn" id="open-btn"><span class="material-symbols-outlined">robot_2</span></button> 
+    <div class="chatbot-section" id="chatbot-section">
+        <div class="close-btn" id="close-btn">
+            <button><span class="material-symbols-outlined">close_small</span></button>
         </div>
         <div class="chat-box" id="chat-box">
 
@@ -101,31 +101,6 @@
                             <p id="fees-minicard-desc">No fees balance found</p>
                         </div>
                     </div>
-                </div><div class="dashboard-card" id="units-progress">
-                    <div class="card-title">
-                        <span class="material-symbols-outlined card-icon">import_contacts</span>
-                        <h4>Course Units Progress</h4>
-                    </div>
-                    <div class="card-progress">
-                        <div class="progress-desc">
-                            <p>Completed Units</p>
-                            <p><strong>18 units</strong> </p>
-                        </div>
-                        <div class="progress-bar" id="course-reg-bar"><span></span></div>
-                        <div class="progress-desc">
-                            <p>35% completed</p>
-                            <p>56 Units</p>
-                        </div>
-                        <hr>
-                        <div class="progress-desc">
-                            <p>Units Left</p>
-                            <p id="balance">38 Units</p>
-                        </div>
-                        <div class="mini-card">
-                            <p><strong>You Have:</strong> 38 Units Left.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         <section class="content-section" id="information">
