@@ -4,6 +4,7 @@ body{
     margin: 0;
     background-color: whitesmoke;
     overflow-x: hidden;
+    
 }
 /* header styles */
 header{
@@ -13,6 +14,8 @@ header{
     display: flex;
     background: white;
     padding: 12px;
+    position: fixed;
+    z-index: 100;
 }
 
 /* logo styles */
@@ -51,12 +54,11 @@ nav ul{
 
 /* content sections */
 .content-section{
-    position: absolute;
+    position: relative;
     top: 10%;
     right: 0;
     left: 0;
     display: none;
-    height: 90%;
     flex-direction: column;
     align-items: center;
 }
@@ -65,6 +67,113 @@ nav ul{
 }
 
 /* sections */
+/* home dashboard */
+.dashboard{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.dashboard-card{
+    width: 80%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+    border-radius: 20px;
+}
+.card-title{
+    display: flex;
+    gap: 10px;
+}
+.card-title h4{
+    font-weight: 400;
+    font-size: large;
+    letter-spacing: 2px;
+}
+#gpa .card-title .card-icon{
+    background: rgb(200, 251, 200);
+    padding: 15px;
+    border-radius: 50px;
+    font-size: xx-large;
+    font-weight: 400;
+    color: green;
+    display: flex;
+    align-items: center;
+}
+.progress-bar{
+    background: #a29f9f;
+    width: 100%;
+    height: 20px;
+    border-radius: 20px;
+}
+#gpa .progress-bar span{
+    display: block;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #b7faa6, #2ca02c);
+}
+.progress-desc{
+    display: flex;
+    justify-content: space-between;
+    color: #444;
+}
+#gpa .mini-card{
+    width: 99%;
+    padding: 10px;
+    background: #c8f3bd;
+    border-radius: 20px;
+}
+#fees-dashboard-card .card-title .card-icon{
+    background: #097ef4;
+    padding: 15px;
+    border-radius: 100%;
+    font-size: xx-large;
+    font-weight: 400;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+#fees-dashboard-card .progress-bar span{
+    background: linear-gradient(135deg, #6ca8e4, #097ef4);
+    height: 100%;
+    border-radius: 20px;
+    display: block;
+}
+#fees-dashboard-card .mini-card{
+    width: 99%;
+    padding: 10px;
+    background:  #097ef4;
+    border-radius: 20px;
+    color: white;
+}
+#balance{
+    color: red;
+}
+#units-progress .card-title .card-icon{
+    background: #d73cef;
+    padding: 15px;
+    border-radius: 100%;
+    font-size: xx-large;
+    font-weight: 400;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+#units-progress .progress-bar span{
+    background: linear-gradient(135deg, #d96bea, #d73cef);
+    display: flex;
+    width: 35%;
+    height: 100%;
+    border-radius: 20px;
+}
+#units-progress .mini-card{
+    background: #e093ec;
+    width: 99%;
+    border-radius: 20px;
+    padding: 10px;
+}
 /* information update section */
 .student-details{
     display: flex;
@@ -113,6 +222,7 @@ h2{
 }
 
 /* fees section styles */
+
 .fees-statement{
     display: flex;
     align-items: center;
@@ -127,14 +237,15 @@ h2{
 .chatbot-section{
     display: flex;
     flex-direction: column;
-    height: 91.5vh;
+    height: 91.5%;
     width: 30%;
     max-width: 500px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    background-color: white;
+    background-color: #444;
     position: fixed;
+    top: 8.5%;
     right: -100%;
-    z-index: 9000;
+    z-index: 99;
     transform: translateX(100%);
     transition: 2s ease;
 }
@@ -148,50 +259,82 @@ h2{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #444;
+    background-color: #fff;
 }
 .close-btn button{
     border: none;
-    background: #444;
-    color: white;
+    background: #fff;
+    color: black;
 }
 .close-btn button:hover{
     cursor: pointer;
 }
-.chat-area{
+.chat-box{
     height: 83%;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #097ef4 #d8d3d3;
 }
-.model{
-    background-color: #d8d3d3;
-    width: fit-content;
-    border-radius: 50px;
+.chat-box p {
+    padding: 10px 15px; 
+    margin: 0;
+    word-wrap: break-word; 
 }
-.user{
-    background-color: #097ef4;
+
+.bot-message {
     color: white;
-    border-radius: 50px;
-    width: fit-content;
-    margin-left: 50px;
+    align-self: flex-start; 
+    border-radius: 15px;
 }
-.chat-area p{
+
+.user-message {
+    background-color: #696868;
+    color: white;
+    align-self: flex-end; 
+    margin-left: 0; 
+    border-radius: 15px 0 15px 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+
+}
+.message{
+    margin: 10px 0;
     padding: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    font-weight: 500;
+    letter-spacing: 1.5px;
 }
 .input-area{
     display: flex;
     margin: auto;
     gap: 10px;
+    padding: 20px;
+    width: 88%;
+    position: fixed;
+    border: 1px solid white;
+    border-radius: 4rem;
+    bottom: 0;
+    margin: 10px;
 }
 .input-area input{
     border-radius: 20px;
-    border: 1px solid #444;
     padding-left: 20px;
     width: 300px;
+    border: none;
     padding: 10px;
     outline: none;
+    background: transparent;
+    color: white;
+}
+.input-area input::placeholder{
+    color: white;
 }
 .input-area button{
     border-radius: 50px;
@@ -201,31 +344,10 @@ h2{
     color: white;
     font-weight: bolder;    
 }
-.open-btn{
-    display: flex;
-    align-items: center;
-    position: absolute;
-    right: 10px;
-    top: 8.5%;
-    z-index: 1;
-    width: 50px;
-    color: white;
-}
+
 
 .open-arrow{
     font-size: 50px;
-}
-.open-btn button:hover{
-    cursor: pointer;
-}
-.open-btn button{
-    display: flex;
-    align-items: center;
-    border: none;
-    height: 40px;
-    background: #097ef4;
-    width: 80px;
-    color: white;
 }
 
 /* timetable section styles */
@@ -310,7 +432,11 @@ select{
 
 @media(min-width: 1900px){
     .chatbot-section{
-        height: 93vh;
+        height: 93%;
+        top: 7%;
+    }
+    .input-area input{
+        width: 380px;
     }
 }
 
@@ -323,7 +449,7 @@ select{
         display: flex;
         flex-direction: column;
         gap: 20px;
-        z-index: 1001;
+        z-index: 99;
         background-color: white;
         transform: translateX(0);
         transition: 1s ease;
@@ -343,11 +469,11 @@ select{
         padding: 5px;
     }
     .content-section{
-        position: fixed;
+        position: relative;
         background: white;
         width: 100%;
         height: 100%;
-        z-index: 99;
+        z-index: 90;
         top: 0;
         align-items: center;
         flex-direction: column;
@@ -356,24 +482,7 @@ select{
         top: 0;
         height: 100vh;
         width: 100%;
-    }
-    .open-btn {
-        position: relative;
-        left: 0px;
-    }
-    .open-btn button{
-        background: white;
-        color: #444;
-        font-size: 10px;
-        font-weight: 500;
-        border-radius: 10px;
-        transition: 0.4s;
-        padding:10px;
-        height: auto;
-    }
-    .open-btn button:hover{
-        background: #097ef4;
-        color: white;
+        z-index: 100;
     }
     .logo{
         display: flex;
@@ -438,7 +547,11 @@ select{
         position: absolute;
         left: 0;
         top: 0;
-        z-index: 100;
+        z-index: 98;
+    }
+
+    .input-area{
+        gap: 60px;
     }
 }
 @media(max-width:700px){

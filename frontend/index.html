@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="index.css">
     <title>GTU Student Portal</title>
+    <script>
+        if (!localStorage.getItem("loggedInUser")) {
+          window.location.href = "login.html";
+        }
+    </script>
 </head>
 <body>
     <div class="open-nav">
@@ -27,10 +32,8 @@
                 <li><a href="#" onclick="showPage('results', event)">RESULTS</a></li>
                 <li><a href="#" onclick="showPage('course', event)">COURSE REGISTRATION</a></li>
                 <li><a href="#" onclick="showPage('requests', event)">REQUESTS</a></li>
+                <li><a href="#" class="open-btn">ASSISTANT</a></li>   
                 <li><a id="signout" href="#">SIGN OUT</a></li>
-                <div class="open-btn">
-                    <button><span class="material-symbols-outlined open-arrow">arrow_left_alt</span></button>
-                </div>
             </ul>
         </nav>
     </header>
@@ -38,17 +41,12 @@
         <div class="close-btn">
             <button>Close X</button>
         </div>
-        <div class="chat-area">
-            <div class="model">
-                <p>Hello, how my i help you tody!</p>
-            </div>
-            <div class="user">
-                <p>What is my registration number</p>
-            </div>
+        <div class="chat-box" id="chat-box">
+
         </div>
         <div class="input-area">
-            <input type="text" placeholder="Ask anything...">
-            <button><span class="material-symbols-outlined">send</span></button>
+            <input id="user-input" type="text" placeholder="Ask anything...">
+            <button id="send-btn"><span class="material-symbols-outlined">send</span></button>
         </div>
     </div>
     
@@ -58,6 +56,76 @@
                 <p id="studentName"></p>
                 <p id="regNumber"></p>
                 <p id="studentCourse"></p>
+            </div>
+            <div class="dashboard">
+                <div class="dashboard-card" id="gpa">
+                    <div class="card-title">
+                        <span class="material-symbols-outlined card-icon">trending_up</span>
+                        <h4>GPA Progress</h4>
+                    </div>
+                    <div class="card-progress">
+                        <div class="progress-desc">
+                            <p>Current GPA</p>
+                            <p id="gpa"><strong></strong></p>
+                        </div>
+                        <div class="progress-bar" id="gpaBar"><span></span></div>
+                        <div class="progress-desc">
+                            <p>Target GPA</p>
+                            <p id="target-gpa"></p>
+                        </div>
+                        <div class="mini-card">
+                            <p id="gpa-percentage">No GPA records yet</p>
+                        </div>
+                    </div>
+                </div><div class="dashboard-card" id="fees-dashboard-card">
+                    <div class="card-title">
+                        <span class="material-symbols-outlined card-icon">attach_money</span>
+                        <h4>Fee Progress</h4>
+                    </div>
+                    <div class="card-progress">
+                        <div class="progress-desc">
+                            <p>Paid</p>
+                            <p><strong id="paid"></strong></p>
+                        </div>
+                        <div class="progress-bar" id="feesBar"><span></span></div>
+                        <div class="progress-desc">
+                            <p id="fees-percentage"></p>
+                            <p id="total"></p>
+                        </div>
+                        <hr>
+                        <div class="progress-desc">
+                            <p>Balance</p>
+                            <p id="balance"></p>
+                        </div>
+                        <div class="mini-card" id="fees-minicard">
+                            <p id="fees-minicard-desc">No fees balance found</p>
+                        </div>
+                    </div>
+                </div><div class="dashboard-card" id="units-progress">
+                    <div class="card-title">
+                        <span class="material-symbols-outlined card-icon">import_contacts</span>
+                        <h4>Course Units Progress</h4>
+                    </div>
+                    <div class="card-progress">
+                        <div class="progress-desc">
+                            <p>Completed Units</p>
+                            <p><strong>18 units</strong> </p>
+                        </div>
+                        <div class="progress-bar" id="course-reg-bar"><span></span></div>
+                        <div class="progress-desc">
+                            <p>35% completed</p>
+                            <p>56 Units</p>
+                        </div>
+                        <hr>
+                        <div class="progress-desc">
+                            <p>Units Left</p>
+                            <p id="balance">38 Units</p>
+                        </div>
+                        <div class="mini-card">
+                            <p><strong>You Have:</strong> 38 Units Left.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="content-section" id="information">
@@ -118,14 +186,7 @@
                         <th>Balance</th>
                     </thead>
                     <tbody id="feesTableBody">
-                        <tr>
-                            <td>26-OCT-2025</td>
-                            <td>Tuition Fee</td>
-                            <td>66660</td>
-                            <td>10000</td>
-                            <td>56660</td>
-                            
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -223,17 +284,18 @@
                             <td><input class="unit-code" type="text"></td>
                             <td>
                                 <select name="" class="group">
-                                    <option value="">Class 1</option>
-                                    <option value="">Class 2</option>
-                                    <option value="">Class 3</option>
-                                    <option value="">Class 4</option>
+                                    <option value="Class 1">Class 1</option>
+                                    <option value="Class 2">Class 2</option>
+                                    <option value="Class 3">Class 3</option>
+                                    <option value="Class 4">Class 4</option>
                                 </select>
                             </td>
                             <td>
                                 <select name="" class="examType">
-                                    <option value="">First Attempt 1</option>
-                                    <option value="">Second Attempt 2</option>
-                                    <option value="">Retake</option>
+                                    <option value="First Attempt">First Attempt</option>
+                                    <option value="Second Attempt">Second Attempt</option>
+                                    <option value="Retake">Retake</option>
+                                    <option value="Project">Project</option>
                                 </select>
                             </td>
                         </tr>
@@ -241,17 +303,18 @@
                             <td><input class="unit-code" type="text"></td>
                             <td>
                                 <select name="" class="group">
-                                    <option value="">Class 1</option>
-                                    <option value="">Class 2</option>
-                                    <option value="">Class 3</option>
-                                    <option value="">Class 4</option>
+                                    <option value="Class 1">Class 1</option>
+                                    <option value="Class 2">Class 2</option>
+                                    <option value="Class 3">Class 3</option>
+                                    <option value="Class 4">Class 4</option>
                                 </select>
                             </td>
                             <td>
                                 <select name="" class="examType">
-                                    <option value="">First Attempt 1</option>
-                                    <option value="">Second Attempt 2</option>
-                                    <option value="">Retake</option>
+                                    <option value="First Attempt">First Attempt</option>
+                                    <option value="Second Attempt">Second Attempt</option>
+                                    <option value="Retake">Retake</option>
+                                    <option value="Project">Project</option>
                                 </select>
                             </td>
                         </tr>
@@ -271,25 +334,26 @@
             </div>
               <div class="request-form">
                 <h2>Student Request Form</h2>
-                <form action="">
+                <form id="requestForm">
                     <table>
                         <tr>
                             <th>Request Type:</th>
                             <td>
                                 <select name="request" id="request" style="width: 200px; height: 100%">
-                                    <option value="">Academic leave</option>
-                                    <option value="">Unit Addition</option>
-                                    <option value="">Unit Withdrawal </option>
-                                    <option value="">Campus Transfer</option>
-                                    <option value="">Missing Marks</option>
+                                    <option value="Academic leave">Academic leave</option>
+                                    <option value="Unit Addition">Unit Addition</option>
+                                    <option value="Unit Withdrawal">Unit Withdrawal </option>
+                                    <option value="Campus Transfer">Campus Transfer</option>
+                                    <option value="Missing Marks">Missing Marks</option>
                                 </select>
                             </td>
                         </tr>
                         
                     </table>
-                    <textarea name="request-area" id="request-area"></textarea>
-                </form>
+                    <textarea name="text-area" id="text-area"></textarea>
                 <button id="request-btn">Send Request</button>
+                </form>
+            </div>
         </section>
     </div>
     <script src="index.js"></script>
