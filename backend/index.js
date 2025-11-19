@@ -10,32 +10,19 @@ import resultsRoute from "./routes/resultRoutes.js";
 import courseRoute from "./routes/courseRoutes.js"
 import session from 'express-session';
 import requestRoute from "./routes/requestRoute.js";
+import chatbotRoute from "./routes/chatbotRoute.js";
+import studentRoute from "./routes/studentRoutes.js";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// SESSION MILDWARE
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "superSecretKey123",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: false,   // true only if using HTTPS
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000 // 1 day
-    }
-  })
-);
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 
-// Test DB connection
 (async () => {
   try {
     const connection = await db.getConnection();
@@ -47,7 +34,6 @@ app.use(express.json());
 })();
 
 
-// Default route
 app.get('/', (req, res) => {
   res.send('🎓 Student Portal Backend is running');
 });
@@ -60,6 +46,8 @@ app.use('/api/fees', feeRoute);
 app.use("/api/results", resultsRoute);
 app.use("/api/register-course", courseRoute);
 app.use("/api/request", requestRoute);
+app.use("/api/chatbot", chatbotRoute);
+app.use("/api/students", studentRoute);
 
 
 // Start server

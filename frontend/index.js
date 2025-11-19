@@ -20,19 +20,79 @@ function showPage(pageId, event){
   event.target.classList.add("active");
 }
 
-// ********** Chatbot logic **********
+// ********** Chatbot UI Toggle **********
+
 const chatbotSection = document.getElementById("chatbot-section");
 const openBtn = document.getElementById("open-btn");
 const closeBtn = document.getElementById("close-btn");
 
-openBtn.addEventListener("click", () =>{
+openBtn.addEventListener("click", () => {
   chatbotSection.classList.add("active");
   openBtn.style.display = "none";
 });
-closeBtn.addEventListener("click", () =>{
+
+closeBtn.addEventListener("click", () => {
   chatbotSection.classList.remove("active");
   openBtn.style.display = "block";
 });
+
+
+// ********** Chatbot Messaging Logic **********
+
+const chatBox = document.getElementById("chat-box");
+const userInput = document.getElementById("user-input");
+const sendBtn = document.getElementById("send-btn");
+
+
+async function chatConversation() {
+  const message = userInput.value.trim();
+  if(!message) return;
+
+  const userDiv = document.createElement("div");
+  userDiv.classList.add("user-message");
+  userDiv.innerText = message;
+  chatBox.appendChild(userDiv);
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  userInput.value = "";
+
+  const typingMsg = document.createElement("div");
+  typingMsg.className = "bot-message";
+  typingMsg.innerText = "Typing...";
+  chatBox.appendChild(typingMsg);
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+
+  try{
+    const response = await fetch("http://localhost:5000/api/chatbot", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message})
+    });
+
+    const data = await response.json();
+
+    chatBox.removeChild(typingMsg);
+
+    const botDiv = document.createElement("div");
+    botDiv.classList.add("bot-message");
+    botDiv.innerText = data.reply || "I did not understood that.";
+    chatBox.appendChild(botDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }catch(error){
+
+  }
+}
+
+sendBtn.addEventListener("click", chatConversation
+);
+
+userInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    chatConversation();
+  }
+});
+
 // ********** Sidebar logic **********
 const closeNavBtn = document.querySelector(".close-nav");
 const openNavBtn = document.querySelector(".open-nav");
@@ -196,70 +256,71 @@ async function fetchFees() {
     const user = JSON.parse(localStorage.getItem("loggedInUser"));
     const reg_number = user?.reg_number;
 
-   
-
     const response = await fetch(`http://localhost:5000/api/fees?reg_number=${encodeURIComponent(reg_number)}`);
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch fees");
-    }
+    if (!response.ok) throw new Error("Failed to fetch fees");
 
     const data = await response.json();
-
     const feesTableBody = document.getElementById("feesTableBody");
     feesTableBody.innerHTML = "";
 
+    let latestCredits = 0;
+    let latestDebits = 0;
+    let latestBalance = 0;
+
+    if (data.fees.length > 0) {
+      const lastItem = data.fees[data.fees.length - 1]; // last record
+      latestCredits = Number(lastItem.credits);
+      latestDebits = Number(lastItem.debits);
+      latestBalance = Number(lastItem.balance);
+    }
+
+    // Populate table
     data.fees.forEach(item => {
       const row = document.createElement("tr");
       row.innerHTML = `
         <td>${item.date.split('T')[0]}</td>
         <td>${item.description}</td>
-        <td>${item.credits}</td>
         <td>${item.debits}</td>
+        <td>${item.credits}</td>
         <td>${item.balance}</td>
       `;
       feesTableBody.appendChild(row);
     });
 
-    let totalCredits = 0;
-let totalDebits = 0;
-let totalBalance = 0;
+    // Update dashboard totals with the latest record
+    const balanceAmount = document.getElementById("balance");
+    const paidAmount = document.getElementById("paid");
+    const totalAmount = document.getElementById("total");
+    const feesBar = document.querySelector("#feesBar span");
+    const percentageEl = document.getElementById("fees-percentage");
 
-data.fees.forEach(item => {
-  totalCredits += Number(item.credits);
-  totalDebits += Number(item.debits);
-  totalBalance += Number(item.balance);
-});
+    balanceAmount.textContent = latestBalance.toLocaleString();
 
-if (data.fees.length > 0) {
-  const balanceAmount = document.getElementById("balance");
-  const paidAmount = document.getElementById("paid");
-  const totaAmount = document.getElementById("total");
-  const feesBar = document.querySelector("#feesBar span");
-  const percentageEl = document.getElementById("fees-percentage");
+    let percentage = latestDebits ? (latestCredits / latestDebits) * 100 : 0;
+    if (percentage > 100) percentage = 100;
+    feesBar.style.width = percentage + "%";
+    percentageEl.textContent = Math.round(percentage) + "%";
 
-  paidAmount.innerHTML = totalCredits.toLocaleString();
-  totaAmount.innerHTML = `Total ${totalDebits.toLocaleString()}`;
-  balanceAmount.innerHTML = totalBalance.toLocaleString();
+    // Mini-card warning
+    const miniDesc = document.getElementById("fees-minicard-desc");
+    const miniCard = document.getElementById("fees-minicard");
+    if (latestBalance > 0) {
+      miniDesc.innerHTML = "<strong>Payment overdue:</strong> please clear your fees balance before the deadline";
+      miniCard.style.background = "#fac2c2";
+      miniDesc.style.color = "red";
+    } else {
+      miniDesc.innerHTML = "All fees are cleared";
+      miniCard.style.background = "#c2fac2";
+      miniDesc.style.color = "green";
+    }
 
-  let percentage = (totalCredits / totalDebits) * 100;
-  if (percentage > 100) percentage = 100;
-
-  feesBar.style.width = percentage + "%";
-  percentageEl.innerHTML = Math.round(percentage) + "%";
-
-  if (totalBalance > 0) {
-    document.getElementById("fees-minicard-desc").innerHTML = "<strong>Payment overdue:</strong> please clear your fees balance before the deadline"
-    document.getElementById("fees-minicard").style.background = "#fac2c2";
-    document.getElementById("fees-minicard-desc").style.color = "red"
-}
- 
-}
   } catch (error) {
     console.error(error);
     alert("Error fetching fees");
   }
 }
+
+
 
 fetchFees();
 

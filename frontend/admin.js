@@ -43,3 +43,49 @@ function hideNavBtn(){
     }
 }
 hideNavBtn();
+
+const studentForm = document.querySelector(".new-student-form");
+const firstNameInput = document.getElementById("first-name");
+const secondNameInput = document.getElementById("second-name");
+const lastNameInput = document.getElementById("last-name");
+const regNumberInput = document.getElementById("reg-number");
+const emailInput = document.getElementById("email");
+const mobileInput = document.getElementById("mobile-no");
+const altMobileInput = document.getElementById("alt-mobile");
+const courseInput = document.getElementById("course");
+const nationalIdInput = document.getElementById("national-id");
+
+studentForm.addEventListener("submit", async (e) =>{
+    e.preventDefault();
+
+    const studentData = {
+        reg_number: regNumberInput.value,
+        first_name: firstNameInput.value,
+        second_name: secondNameInput.value,
+        last_name: lastNameInput.value,
+        email: emailInput.value,
+        mobile: mobileInput.value,
+        alt_mobile: altMobileInput.value,
+        national_id: nationalIdInput.value,
+        course: courseInput.value,
+    }
+
+    try{
+        const response = await fetch("http://localhost:5000/api/students", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(studentData)
+        });
+
+        const result = await response.json();
+        if(response.ok){
+            alert("student registred succesfully");
+            studentForm.reset();
+        }else{
+            alert("Error:" + result.message)
+        }
+    }catch(error){
+        console.error(error);
+        alert("Failed to register student.");
+    }
+})

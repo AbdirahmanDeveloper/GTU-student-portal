@@ -22,10 +22,10 @@
             <ul>
                 <li><a href="#home" class="active active">HOME</a></li>
                 <li><a href="#students">STUDENTS</a></li>
-                <li><a href="#teachers" >TEACHERS</a></li>
-                <li><a href="#staffs" >STAFFS</a></li>
-                <li><a href="#timetables">TIMETABLES</a></li>
-                <li><a href="#units">UNITS</a></li>
+                <li><a href="#fees" >FEES</a></li>
+                <li><a href="#timetables" >TIMETABLES</a></li>
+                <li><a href="#results">RESULTS</a></li>
+                <li><a href="#courses">COURSES</a></li>
                 <li><a href="#">SIGNOUT</a></li>
         </ul>
         </nav>
@@ -33,21 +33,37 @@
     <div class="content-sections">
         <section class="content-section active" id="home"><h1>
             <div class="user-details"></div>
-            <div class="home-details">
-                <img src="images/hero.png" alt="">
-                <h1 class="gown-icon">🎓</h1>
-                <div class="home-txt">
-                    <h3>Welcome to </h3>
-                    <h2>GTU Admin Panel</h2>
-                    <h5>Where Innovation Starts</h5>
-                </div>
+            <div class="dashboard">
             </div>
-        </h1></section>
-        <section class="content-section" id="students">hi</section>
-        <section class="content-section" id="teachers"></section>
-        <section class="content-section" id="staffs"></section>
+        </section>
+        <section class="content-section" id="students">
+            <form class="new-student-form">
+                <h1>Register New Student</h1>
+                <label for="reg-number">Enter Reg Number</label>
+                <input type="text" id="reg-number">
+                <label for="first-name">Enter First Name</label>
+                <input type="text" id="first-name">
+                <label for="second-name">Enter Second Name</label>
+                <input type="text" id="second-name">
+                <label for="last-name">Enter last Name</label>
+                <input type="text" id="last-name">
+                <label for="email">Enter Student Email</label>
+                <input type="text" id="email">
+                <label for="first-name">Enter Student Mobile</label>
+                <input type="text" id="mobile-no">
+                <label for="alt-mobile">Enter Alt Mobile</label>
+                <input type="text" id="alt-mobile">
+                <label for="national-id">Enter NAtional Id</label>
+                <input type="text" id="national-id">
+                <label for="course">Enter Course</label>
+                <input type="text" id="course">
+                <button>Register</button>
+            </form>
+        </section>
+        <section class="content-section" id="fees"></section>
         <section class="content-section" id="timetables"></section>
-        <section class="content-section" id="units"></section>
+        <section class="content-section" id="results"></section>
+        <section class="content-section" id="courses"></section>
     </div>
     <script src="admin.js"></script>
 </body>

@@ -13,6 +13,9 @@ header{
     padding: 12px;
     height: 55.5px;
     width: 100%;
+    position: fixed;
+    background: white;
+    z-index: 100;
 }
 .logo img{
     width: 100px;
@@ -50,52 +53,43 @@ nav a:hover, a.active{
     display: none;
     height: 90vh;
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 .content-section.active{
     display: flex;
 }
 /* home section styles */
-.home-details h3{
+
+.new-student-form{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 10px;
+    zoom: 0.8;
+}
+.new-student-form h1{
+    text-align: center;
+}
+.new-student-form input{
+    padding: 10px;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid #444;
+}
+.new-student-form label{
+    font-weight: bold;
+}
+.new-student-form button{
+    padding: 10px;
+    background: #097ef4;
+    border: none;
+    font-weight: bold;
     color: white;
-    font-size: 60px;
-    font-weight: 400;
-}
-.home-details h2{
-    color: white;
-    font-weight: 600;
-    font-size: 55px;
-    letter-spacing: 2px;
-}
-.home-details h5{
-    color: #dbe9ff;
-    font-weight: 200;
-}
-.home-txt{
-    position: absolute;
-    top: 30%;
-    left: 10%;
-    line-height: 15px;
-}
-.gown-icon{
-    position: fixed;
-    left: 70%;
-    top: 45%;
-    transform:rotateY(5deg) rotateZ(0deg);
-    transition: transform 1s ease;
-    font-size: 100px;
-}
-.home-details img{
-    position: absolute;
-    width: 400px;
-    right: 30%;
-    top: 10%;
-}
-#home{
-    background-size: cover;
-    background: linear-gradient(135deg, #0a6efc 0%, #045de9);
-    background-position:center center;
-    background-position: center;
-    background-size: cover;
+    border-radius: 10px;
 }
 @media(max-width:1200px){
     header{
@@ -117,6 +111,8 @@ nav a:hover, a.active{
         left: 0;
         width: 100%;
         height: 100vh;
+        display: flex;
+        align-items: center;
     }
     .logo img{
         height: 150px;
@@ -192,21 +188,6 @@ nav a:hover, a.active{
     }
     .logo{
         margin-left: 50px;
-    }
-    .home-details img{
-        width: 300px;
-        left: 20%;
-        top: 20%;
-    }
-    .home-txt h2{
-        font-size: x-large;
-    }
-    .home-txt h3{
-        font-size: x-large;
-    }
-    .home-txt{
-        left: 30%;
-        top: 75%;
     }
     .gown-icon{
         left: 15%;
