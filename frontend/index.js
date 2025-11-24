@@ -159,13 +159,12 @@ async function fetchTimetable(){
     data.forEach(item => {
       const row = document.createElement('tr');
       row.innerHTML = `
-      <td>${item.id}</td>
       <td>${item.unit_code}</td>
-      <td>${item.subject_name}</td>
+      <td>${item.unit_name}</td>
       <td>${item.start_time}</td>
       <td>${item.end_time}</td>
       <td>${item.venue}</td>
-      <td>${item.lecturer_name}</td>
+      <td>${item.lecturer}</td>
       `;
       tableBody.appendChild(row);
     })

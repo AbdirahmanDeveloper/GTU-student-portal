@@ -12,6 +12,9 @@ import session from 'express-session';
 import requestRoute from "./routes/requestRoute.js";
 import chatbotRoute from "./routes/chatbotRoute.js";
 import studentRoute from "./routes/studentRoutes.js";
+import insertFeesRoute from "./routes/insertFeesRoute.js";
+import insertTimetableRoute from "./routes/insertTimetableRoute.js";
+import removeFromTimetableRoute from "./routes/removeFromTimetableRoute.js";
 
 dotenv.config();
 
@@ -48,6 +51,9 @@ app.use("/api/register-course", courseRoute);
 app.use("/api/request", requestRoute);
 app.use("/api/chatbot", chatbotRoute);
 app.use("/api/students", studentRoute);
+app.use("/api/insert-fees", insertFeesRoute);
+app.use("/api/insert-unit", insertTimetableRoute);
+app.use('/api/remove-unit', removeFromTimetableRoute);
 
 
 // Start server

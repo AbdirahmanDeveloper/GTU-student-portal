@@ -37,7 +37,7 @@
             </div>
         </section>
         <section class="content-section" id="students">
-            <form class="new-student-form">
+            <form class="new-student-form form">
                 <h1>Register New Student</h1>
                 <label for="reg-number">Enter Reg Number</label>
                 <input type="text" id="reg-number">
@@ -57,11 +57,65 @@
                 <input type="text" id="national-id">
                 <label for="course">Enter Course</label>
                 <input type="text" id="course">
-                <button>Register</button>
+                <button>REGISTER</button>
             </form>
         </section>
-        <section class="content-section" id="fees"></section>
-        <section class="content-section" id="timetables"></section>
+        <section class="content-section" id="fees">
+            <form class="fees-insert-form form" id="fees-insert-form">
+                <h1>Insert Fees</h1>
+                <label for="reg-number">Enter Reg No:</label>
+                <input type="text" id="fees-reg-number">
+                <label for="date">Enter Date</label>
+                <input type="text" id="credited-date">
+                <label for="description">Enter Description</label>
+                <input type="text" id="description">
+                <label for="debts">Enter Debts</label>
+                <input type="text" id="debits-amount">
+                <label for="credits">Enter Credited Amount</label>
+                <input type="text" id="credited-amount">
+                <label for="debts">Enter Balance</label>
+                <input type="text" id="balance-amount">
+                <button>UPDATE</button>
+            </form>             
+        </section>
+        <section class="content-section" id="timetables">
+            <form id="removeUnit" class="form">
+                <h1>Add Units</h1>
+                <label for="unit-code">Enter Unit Code:</label>
+                <input type="text" id="removeUnitCode">
+                <button>Save Changes</button>
+            </form>
+            <form id="addUnit" class="form">
+                <h1>Add Unit</h1>
+                <label for="unit-code">Enter Unit Code:</label>
+                <input type="text" id="unitCode">
+                <label for="unit-name">Enter Unit Name:</label>
+                <input type="text" id="unitName">
+                <label for="from">From:</label>
+                <input type="text" id="from">
+                <label for="to">To:</label>
+                <input type="text" id="to">
+                <label for="venue">Venue:</label>
+                <input type="text" id="venue">
+                <label for="unit-code">Lecturer:</label>
+                <input type="text" id="lecturer">
+                <label for="exam-date">Exam Date:</label>
+                <input type="text" id="examDate">
+                <button>Save Changes</button>
+            </form>
+            <table>
+                <thead>
+                    <th>Unit Code</th>
+                    <th>Unit Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Venue</th>
+                    <th>Lecturer</th>
+                </thead>
+                <tbody id="timetableTAbleBody"></tbody>
+            </table>
+            
+        </section>
         <section class="content-section" id="results"></section>
         <section class="content-section" id="courses"></section>
     </div>

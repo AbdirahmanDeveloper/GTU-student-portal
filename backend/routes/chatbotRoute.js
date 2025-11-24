@@ -23,7 +23,7 @@ const client = new Groq({
         messages: [
           {
             role: "system",
-            content: "You are an Global Tech University (GTU) Student Portal Assistant. Answer clearly and helpfully."
+            content: "You are an Global Tech University (GTU) Student Portal Assistant Located at Kenya Thika Town . Answer clearly and helpfully offficial email is GTU.ac.ke."
           },
           {
             role: "user",

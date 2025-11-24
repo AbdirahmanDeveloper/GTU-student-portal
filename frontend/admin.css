@@ -51,17 +51,20 @@ nav a:hover, a.active{
     left: 0;
     right: 0;
     display: none;
-    height: 90vh;
     width: 100%;
-    align-items: center;
-    justify-content: center;
+    gap: 100px;
+    padding: 20px;
 }
 .content-section.active{
     display: flex;
 }
+#students, #fees{
+    justify-content: center;
+    align-items: center;
+}
 /* home section styles */
 
-.new-student-form{
+.form{
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -70,26 +73,44 @@ nav a:hover, a.active{
     border-radius: 10px;
     gap: 10px;
     zoom: 0.8;
+    height: fit-content;
 }
 .new-student-form h1{
     text-align: center;
 }
-.new-student-form input{
+.form input{
     padding: 10px;
     outline: none;
     border-radius: 10px;
     border: 1px solid #444;
 }
-.new-student-form label{
+.form label{
     font-weight: bold;
 }
-.new-student-form button{
+.form button{
     padding: 10px;
     background: #097ef4;
     border: none;
     font-weight: bold;
     color: white;
     border-radius: 10px;
+}
+table{
+    border: 1px solid #444;
+    padding: 20px;
+    border-collapse: collapse;
+    width: 50%;
+}
+td, th{
+    padding: 20px;
+    border: 1px solid #555;
+}
+th{
+    background: #097ef4;
+    color: white;
+}
+#timetables .form{
+    width: 200px;
 }
 @media(max-width:1200px){
     header{
