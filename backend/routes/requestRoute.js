@@ -1,51 +1,44 @@
 import express from "express";
-import nodemailer from "nodemailer";
-import dotenv from "dotenv";
+import db from "../config/db.js";
 
-dotenv.config();
 const router = express.Router();
 
-router.post("/send", async (req, res) => {
-  const { requestType, message, studentName, regNumber } = req.body;
-
-  if (!requestType || !message || !studentName || !regNumber) {
-    return res.status(400).json({ success: false, message: "Missing required fields" });
-  }
-
+router.post('/', async (req, res) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
+    const { reg_number, request, request_type } = req.body;
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: "addeh2003@gmail.com",
-      subject: `Request from ${studentName} (${regNumber}) - ${requestType}`,
-      text: `
-Student Name: ${studentName}
-Reg Number: ${regNumber}
-Request Type: ${requestType}
+    const sql = `
+      INSERT INTO requests (reg_number, request, request_type)
+      VALUES (?, ?, ?)
+    `;
 
-Message:
-${message}
-      `,
-    };
+    await db.query(sql, [ reg_number, request, request_type ]);
 
-    await transporter.sendMail(mailOptions);
+    res.json({ success: true });
 
-    res.json({ success: true, message: " Request email sent successfully!" });
   } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).json({ success: false, message: " Failed to send email." });
+    console.error(error);
+    res.json({ success: false, error });
   }
 });
 
-router.get("/test", (req, res) => {
-  res.json({ success: true, message: "Request route working " });
-});
+router.get('/', async(req, res) => {
+
+  try{
+      const [rows] = await db.query("SELECT * FROM requests");
+
+      if(!rows.length){
+          return res.status(404).json({message: "No requests found",
+          });
+      }
+      res.json(rows)
+  } catch(error){
+      console.error(error);
+      return res.status(500).json({
+          message: "server error",
+          error: error.message
+      });
+  }
+})
 
 export default router;

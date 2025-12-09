@@ -241,3 +241,65 @@ removeUnit.addEventListener("submit", async(e) => {
 })
 
 
+async function fetchRequest() {
+    const requestTBody = document.getElementById("request-tBody");
+
+    try {
+        const response = await fetch("http://localhost:5000/api/request");
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch requests");
+        }
+
+        const data = await response.json();
+        console.log("DATA RECEIVED:", data);
+
+        requestTBody.innerHTML = "";
+
+        data.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.reg_number}</td>
+                <td>${item.request}</td>
+                <td>${item.request_type}</td>
+                <td><input type="text" class = "remarkInput"></td>
+
+            `;
+            requestTBody.appendChild(row);
+        });
+
+    } catch (error) {
+        console.error(error);
+        alert("Error: " + error.message);
+    }
+}
+fetchRequest();
+
+
+requestform.addEventListener("submit", async(e)=> {
+    e.preventDefault();
+
+    const requestform = document.getElementById("request-form");
+    const remarkInput = document.querySelectorAll(".remarInput");
+
+    const remarkDetails = {
+        remarks: Array.from(remarkInput).map(r => ({remarks: r.value}))
+    }
+
+    try{
+        const response = await fetch("http://localhost:5000/api/remarks",{
+            method: "POST",
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(remarkDetails)
+        })
+        const data = await response.json();
+
+        if(response.ok){
+            alert("remarked succesfully")
+        } else{
+            alert("Error:" + data.message)
+        }
+    } catch(error){
+
+    }
+})

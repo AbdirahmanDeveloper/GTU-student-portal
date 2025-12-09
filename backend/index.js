@@ -15,6 +15,8 @@ import studentRoute from "./routes/studentRoutes.js";
 import insertFeesRoute from "./routes/insertFeesRoute.js";
 import insertTimetableRoute from "./routes/insertTimetableRoute.js";
 import removeFromTimetableRoute from "./routes/removeFromTimetableRoute.js";
+import remarksRoute from "./routes/remarksRoute.js"
+
 
 dotenv.config();
 
@@ -54,6 +56,7 @@ app.use("/api/students", studentRoute);
 app.use("/api/insert-fees", insertFeesRoute);
 app.use("/api/insert-unit", insertTimetableRoute);
 app.use('/api/remove-unit', removeFromTimetableRoute);
+app.use('/api/remarks', remarksRoute)
 
 
 // Start server

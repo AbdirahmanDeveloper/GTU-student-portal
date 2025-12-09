@@ -401,42 +401,54 @@ courseForm.addEventListener("submit", registerCourses);
 
 
 // *********** request section *****************
-document.getElementById("requestForm").addEventListener("submit", async (e) => {
+async function requestSection(e) {
   e.preventDefault();
 
-  const requestType = document.getElementById("request").value;
-  const message = document.getElementById("text-area").value;
+  const request_type = document.getElementById("request").value;
+  const request = document.getElementById("text-area").value;
+  const approvalTBody = document.getElementById("approvalTBody");
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-  if (!requestType || !message.trim()) {
+  if (!request_type || !request.trim()) {
     alert("Please select a request type and write your message.");
     return;
   }
 
-  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  const requestData = {
+    request,
+    request_type,
+    reg_number: loggedInUser.reg_number
+  };
 
   try {
-    const response = await fetch("http://localhost:5000/api/request/send", {
+    const response = await fetch("http://localhost:5000/api/request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        requestType, 
-        message,
-        studentName: loggedInUser.name,      
-        regNumber: loggedInUser.reg_number  
-      }),
+      body: JSON.stringify(requestData)
     });
 
-    const result = await response.json();
+    const data = await response.json();
 
-    if (result.success) {
-      alert(" Request sent successfully!");
+    if (data.success) {
+
+      approvalTBody.innerHTML = `
+        <tr>
+          <td>${request_type}</td>
+          <td>Pending</td>
+        </tr>
+      `;
+
+      alert("Request sent successfully!");
       document.getElementById("text-area").value = "";
     } else {
-      alert(" Failed to send request. Try again later.");
+      alert("Failed to send request. Try again later.");
     }
+
   } catch (error) {
     console.error("Error:", error);
-    alert(" Something went wrong. Check your connection or server.");
+    alert("Something went wrong. Check your connection or server.");
   }
-});
+}
+
+document.getElementById("requestForm").addEventListener("submit", requestSection);
 

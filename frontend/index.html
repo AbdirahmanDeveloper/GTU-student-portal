@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="open-nav">
-        <button><span class="material-symbols-outlined close-navbar-icon">dehaze</span></button>
+        <button><span class="material-symbols-outlined open-navbar-icon">dehaze</span></button>
     </div>
     <header class="side-bar">
         <div class="close-nav">
@@ -322,10 +322,21 @@
                                 </select>
                             </td>
                         </tr>
-                        
                     </table>
                     <textarea name="text-area" id="text-area"></textarea>
                 <button id="request-btn">Send Request</button>
+                </form>
+            </div>
+            <div class="approval-form">
+                <h2>Approved Requests</h2>
+                <form id="approvalForm">
+                    <table>
+                        <thead>
+                            <th>Request Type</th>
+                            <th>Remarks</th>
+                        </thead>
+                        <tbody id="approvalTBody"></tbody>
+                    </table>
                 </form>
             </div>
         </section>
