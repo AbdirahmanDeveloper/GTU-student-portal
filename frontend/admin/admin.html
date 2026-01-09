@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="admin.css">
+    <title>GTU Admin Panel</title>
+</head>
+<body>
+    <header>
+        <div class="navigation-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav>
+            <div class="logo">
+                <img src="/frontend/images/logo.png" alt="">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active active nav-item">HOME</a></li>
+                <li class="dropdown">
+                    <a href="#">STUDENTS <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#studentsList" class="nav-item"><i class="fa-solid fa-users"></i> List Students</a></li>
+                        <li><a href="#Addstudents" class="nav-item"><i class="fa-solid fa-user-plus"></i> Add Student</a></li>
+                    </ul>
+                </li>
+                <li><a href="#fees" class="nav-item">FEES</a></li>
+                <li class="dropdown"><a href="#" >TIMETABLES <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                   <ul class="dropdown-menu">
+                    <li><a href="#timetables" class="nav-item"><i class="fa-sharp fa-solid fa-table-cells"></i> See Timetables</a></li>
+                    <li><a href="#edit-timetable" class="nav-item"><i class="fa-solid fa-pen"></i> Edit Timetables</a></li>
+                   </ul>
+                </li>
+                <li><a href="#results" class="nav-item">RESULTS</a></li>
+                <li><a href="#courses" class="nav-item">COURSES</a></li>
+                <li><a href="#requests" class="nav-item">REQUESTS</a></li>
+                <li><a href="#">SIGNOUT</a></li>
+        </ul>
+        </nav>
+    </header>
+    <div class="content-sections">
+        <section class="content-section active" id="home">
+            <div class="user-details"></div>
+            <div class="dashboard">
+                <div class="dashboard-header">
+                    <div class="header-card students">
+                        <h3>Total Students</h3>
+                        <hr>
+                        <div class="card-bottom">
+                            <p id="totalStudents"></p>
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <div class="header-card courses">
+                        <h3>Total Courses</h3>
+                        <hr>
+                        <div class="card-bottom">
+                            <p id="totalCourses"></p>
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                    </div>
+                    <div class="header-card fees">
+                        <h3>Total Fees</h3>
+                        <hr>
+                        <div class="card-bottom">
+                            <p id="totalFees"></p>
+                            <i class="fa-solid fa-dollar"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="statistics">
+                    <div class="statistics-card">
+                        <h2>Fees Overview</h2>
+                        <hr>
+                        <div class="card-header">
+                            <div class="amounts-label">
+                                <p>total fees</p>
+                                <p>paid fees</p>
+                                <p>balance fees</p>
+                            </div>
+                            <div class="amounts">
+                                <p id="totalFees"></p>
+                                <p id="paid-amount"></p>
+                                <p id="balance-amount"></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-bottom">
+                            <div class="progress-bar" id="feesProgressBar"><span class="progress-fill"></span></div>
+                            <apan id="percentage"></apan>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="content-section" id="studentsList">
+            <table>
+                <thead>
+                    <th>StudentName</th>
+                    <th>Reg Number</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Course</th>
+                </thead>
+                <tbody id="studentsTBody"></tbody>
+            </table>
+        </section>
+        <section class="content-section" id="Addstudents">
+            <form class="new-student-form form" id="insertNewStudent">
+                <h1>Register New Student</h1>
+                <label for="first-name">Enter First Name</label>
+                <input type="text" id="first-name">
+                <label for="second-name">Enter Second Name</label>
+                <input type="text" id="second-name">
+                <label for="last-name">Enter last Name</label>
+                <input type="text" id="last-name">
+                <label for="email">Enter Student Email</label>
+                <input type="text" id="email">
+                <label for="first-name">Enter Student Mobile</label>
+                <input type="text" id="mobile-no">
+                <label for="alt-mobile">Enter Alt Mobile</label>
+                <input type="text" id="alt-mobile">
+                <label for="national-id">Enter NAtional Id</label>
+                <input type="text" id="national-id">
+                <label for="course">Enter Course</label>
+                <input type="text" id="course">
+                <button>REGISTER</button>
+            </form>
+        </section>
+        <section class="content-section" id="fees">
+            <form class="fees-insert-form form" id="fees-insert-form">
+                <h1>Insert Fees</h1>
+                <label for="reg-number">Enter Reg No:</label>
+                <input type="text" id="fees-reg-number">
+                <label for="description">Enter Description</label>
+                <input type="text" id="description">
+                <label for="credits">Enter Credited Amount</label>
+                <input type="text" id="credited-amount">
+                <button>UPDATE</button>
+            </form>             
+        </section>
+        <section class="content-section" id="timetables">
+            <table>
+                <thead>
+                    <th>Unit Code</th>
+                    <th>Unit Name</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Venue</th>
+                    <th>Lecturer</th>
+                    <th>Exam Date</th>
+                </thead>
+                <tbody id="timetableTAbleBody"></tbody>
+            </table>
+            
+        </section>
+        <section class="content-section timetable" id="edit-timetable">
+            <form id="removeUnit" class="form">
+                <h1>Remove Units</h1>
+                <label for="unit-code">Enter Unit Code:</label>
+                <input type="text" id="remove-unit-code">
+                <button>Save Changes</button>
+            </form>
+            <form id="addUnit" class="form">
+                <h1>Add Unit</h1>
+                <label for="add-unit-code">Enter Unit Code:</label>
+                <input type="text" id="add-unit-code">
+                <label for="from">From:</label>
+                <input type="text" id="start-time">
+                <label for="to">To:</label>
+                <input type="text" id="end-time">
+                <label for="venue">Venue:</label>
+                <input type="text" id="venue">
+                <label for="lecturer">Lecturer:</label>
+                <input type="text" id="lecturer">
+                <label for="exam-date">Exam Date:</label>
+                <input type="text" id="exam-date">
+                <button>Save Changes</button>
+            </form>
+        </section>
+        <section class="content-section" id="results">
+            <form id="resultsForm" class="form">
+                <h1>Add Result</h1>
+                <label for="reg number"></label>
+                <input type="text" id="reg-number">
+                <label for="unit-code">Enter Unit Code:</label>
+                <input type="text" id="unit-code">
+                <label for="unit-name">Enter Unit Name:</label>
+                <input type="text" id="unit-name">
+                <label for="academic hours">Academic Hours:</label>
+                <input type="text" id="academic-hours">
+                <label for="marks">Marks:</label>
+                <input type="text" id="marks">
+                <label for="grade">Grade:</label>
+                <input type="text" id="grade">
+                <button>Save Changes</button>
+            </form>
+        </section>
+        <section class="content-section" id="courses">
+            <table id="course-table">
+                <thead>
+                    <tr>
+                        <th>Unit Code</th>
+                        <th>Unit Name</th>
+                    </tr>
+                </thead>
+                <tbody id="courses-tBody"></tbody>
+            </table>
+        </section>
+        <section class="content-section" id="requests">
+            <form id="request-form">
+                <table id="request-table">
+                    <thead>
+                        <tr>
+                            <th>Reg Number</th>
+                            <th>Request</th>
+                            <th>Request Type</th>
+                            <th>Remark</th>
+                        </tr>
+                    </thead>
+                    <tbody id="request-tBody"></tbody>
+                </table>
+                <button>Save Changes</button>
+            </form>
+        </section>
+    </div>
+    <script src="admin.js"></script>
+</body>
+</html>
